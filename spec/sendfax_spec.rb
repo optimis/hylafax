@@ -9,7 +9,10 @@ describe Fax::Sendfax do
       Fax.configure do |config|
       end
     end
-  end
+  
+    if 'returns error' do
+    end
 
+  end
   
 end

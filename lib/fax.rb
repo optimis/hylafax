@@ -8,6 +8,10 @@ module Fax
     def sendfax(*args)
       Fax::Sendfax.new().send
     end
+
+    def faxstat(*args)
+      Fax::Faxstat.status
+    end
     
   end
 end
