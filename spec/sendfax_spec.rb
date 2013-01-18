@@ -4,7 +4,10 @@ describe Fax::Sendfax do
 
   describe 'when sendfax is not define' do
     before do
-      ENV['SENDFAX'] = '/path/to/nowhere'
+      ENV['SENDFAX_PATH'] = '/path/to/nowhere'
+      Fax.configuration = nil
+      Fax.configure do |config|
+      end
     end
   end
 

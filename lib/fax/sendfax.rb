@@ -1,4 +1,4 @@
-module fax
+module Fax
   class Sendfax
 
     def initialize(options={})

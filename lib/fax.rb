@@ -1,4 +1,6 @@
 require "fax/version"
+require "fax/configuration"
+require "fax/sendfax"
 
 module Fax
   class << self
