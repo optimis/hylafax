@@ -30,9 +30,9 @@ module Fax
     end
 
     def handle_response
-      tmp = @response.split("\r")
+      tmp = @response.split("\n")
       @running = tmp[0].split(":").last.include?("Running")
-      tmp_jobs = tmp[(1..-1)].each {|job| job.split("\n")}.delete_if{|str| str.empty? || str.eql?("\n")}
+      tmp_jobs = tmp[(1..-1)].each{|job| job.split("\n")}.delete_if{|str| str.empty? || str.eql?("\n")}
       unless tmp_jobs.empty?
         key = tmp_jobs[0].split(" ")
         tmp_jobs[(1..-1)].each do |job|

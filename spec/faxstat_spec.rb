@@ -39,8 +39,9 @@ describe Fax::Faxstat do
       fake_faxstat_response = "HylaFAX scheduler on jthullbery.dev.teladoc.com: Running\r\n\nJID  Pri S  Owner Number       Pages Dials     TTS Status\n3    127 W jthull 2037421719    0:0   0:12         \r\n\nJID  Pri S  Owner Number       Pages Dials     TTS Status\n2    127 F jthull 2037421719    0:0   0:12         Kill time expired\r\n"
       Fax::Faxstat.any_instance.stub(:faxstat).and_return(fake_faxstat_response)
 
-      Fax.faxstat.job(2)[:status].should == 'F'
-      Fax.faxstat.job(3)[:status].should == 'W'
+
+      Fax.faxstat.job(2)['S'].should == 'F'
+      Fax.faxstat.job(3)['S'].should == 'W'
     end
 
   end
