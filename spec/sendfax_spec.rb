@@ -10,7 +10,7 @@ describe Fax::Sendfax do
       end
     end
   
-    if 'returns error' do
+    it 'returns error' do
     end
 
   end

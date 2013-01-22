@@ -6,26 +6,32 @@ module Fax
     def initialize(options={})
       configure_from_env
       raise Fax::ConfigError if Fax.configuration.faxstat_path.nil?
-
     end
 
     def running?
+      update_status
       @running
     end
 
-    def configure_from_env
-      Fax::Configuration.new
-    end
-
     private
-    def faxstat
-      @response = `#{Fax.configuration.faxstat_path} -sdl`
+
+    def update_status
+      @response = faxstat
+      handle_response
     end
 
-    def parse_response
+    def faxstat
+      `#{Fax.configuration.faxstat_path} -sdl`
+    end
+
+    def handle_response
       tmp = @response.split("\r")
       @running = tmp[0].split(":").last.include?("Running")
-      
+    end
+
+    def configure_from_env
+      Fax.configure do |config|
+      end
     end
 
   end

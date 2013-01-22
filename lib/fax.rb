@@ -1,6 +1,7 @@
 require "fax/version"
 require "fax/configuration"
 require "fax/sendfax"
+require "fax/faxstat"
 
 module Fax
   class << self
@@ -10,7 +11,7 @@ module Fax
     end
 
     def faxstat(*args)
-      Fax::Faxstat.status
+      Fax::Faxstat.new
     end
     
   end

@@ -1,6 +1,6 @@
 require 'rspec/autorun'
-require 'webmock/rspec'
 require 'fax'
+require 'pry'
 
 RSpec.configure do |config|
   config.mock_with :rspec
