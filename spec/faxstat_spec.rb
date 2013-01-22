@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe Fax::Faxstat do
 
-  describe 'status' do
+  describe 'running' do
 
     before do
+      Fax.configuration = nil
       ENV['SENDFAX_PATH'] = '/path/to/somewhere'
       ENV['FAXSTAT_PATH'] = '/another/path'
     end
@@ -13,9 +14,9 @@ describe Fax::Faxstat do
       fake_faxstat_response = "HylaFAX scheduler on dev.teladoc.com: Running\r\n"
       Fax::Faxstat.any_instance.stub(:faxstat).and_return(fake_faxstat_response)
 
-      faxstat = Fax.faxstat
-      faxstat.running?.should == true
+      Fax.faxstat.running?.should == true
     end
+
   end
   
 end

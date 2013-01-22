@@ -13,6 +13,11 @@ module Fax
       @running
     end
 
+    def job_status( job_id )
+      update_status
+      jobs[job_id].present?
+    end
+
     private
 
     def update_status
