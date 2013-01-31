@@ -84,7 +84,6 @@ module Fax
       @modem[:running] = @modem[:sending].eql?(true)
       @modem[:ready] = (!@modem[:sending].eql?(true))
       @modem[:free] = resp[3].eql?("Free") || resp[3].eql?("Running")
-
     end
 
     def configure_from_env
