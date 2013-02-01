@@ -16,7 +16,7 @@ module Fax
     end
 
     def faxrm(*args)
-      Fax::Faxrm.new
+      Fax::Faxrm.new(args[0])
     end
     
   end

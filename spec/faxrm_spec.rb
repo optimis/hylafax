@@ -14,23 +14,24 @@ describe Fax::Faxrm do
       fake_faxrm_response = "Job 8 removed.\n"
       
       Fax::Faxrm.any_instance.stub(:faxrm).and_return(fake_faxrm_response)
-      Fax::faxrm(8).should == true
+
+      Fax::faxrm.rm(8).should == true
     end
 
     it 'doesnt remove a fax created by a differnt user' do
       fake_faxrm_response = "504 Cannot kill job: Operation not permitted."
-      
+
       Fax::Faxrm.any_instance.stub(:faxrm).and_return(fake_faxrm_response)
-      Fax::faxrm(8).should == true
+
+      Fax::faxrm.rm(8).should == false
     end
 
     it 'force removes a fax created by a different user' do
       fake_faxrm_response = true
-      PTY.any_instance.stub(:spawn).and_return(fake_faxrm_response)
+      Fax::Faxrm.any_instance.stub(:force_rm).and_return(fake_faxrm_response)
 
-      Fax::faxrm.force_rm.should == true
+      Fax::faxrm.force_rm(8).should == true
     end
-
     
   end
 

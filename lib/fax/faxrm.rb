@@ -5,17 +5,21 @@ module Fax
     attr_accessor :response
 
     def initialize(job_id=nil)
+      result = nil
       configure_from_env
       raise Fax::ConfigError if Fax.configuration.faxstat_path.nil?
+    end
+
+    def rm(job_id)
       if job_id
         response = faxrm(job_id)
         if response.include?('removed')
-          return true
+          result = true
         else
-          return false
+          result = false
         end
       end
-    end
+    end      
 
     def force_rm(job_id)
       result = false
