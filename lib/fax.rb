@@ -8,7 +8,7 @@ module Fax
   class << self
 
     def sendfax(*args)
-      Fax::Sendfax.new().send
+      Fax::Sendfax.new(args).send
     end
 
     def faxstat(*args)
