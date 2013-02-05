@@ -7,12 +7,20 @@ module Fax
     def initialize(options={})
       configure_from_env
       raise Fax::ConfigError if Fax.configuration.sendfax_path.nil?
-      unless options.empty?
-        options[:document]    = '/tmp/cool.pdf'
-        options[:fax_number]  = 'james@2037691544'
-        options[:from]        = 'James Gem Example'
-      end
-      @document = '/tmp/cool.pdf'
+      # unless options.empty?
+      #   options[:document]    = '/tmp/cool.pdf'
+      #   options[:fax_number]  = 'james@2037691544'
+      #   options[:from]        = 'James Gem Example'
+      #   options[:document]    = '/tmp/cool.pdf'
+      # end
+
+      # @subject    = options[:subject]
+      raise Fax::ParamError if options.empty?
+      @document   = options[:document]
+      @fax_number = options[:fax_number]
+      @from       = options[:from]
+      @to         = options[:to]
+      
     end
 
     def send

@@ -17,7 +17,7 @@ describe Fax::Sendfax do
       fake_sendfax_response = "request id is 19 (group id 29) for host 0.0.0.0 (1 file)\n"
       Fax::Sendfax.any_instance.stub(:sendfax).and_return(fake_sendfax_response)      
 
-      tmp = Fax::Sendfax.new
+      tmp = Fax::Sendfax.new(document: '/tmp/cool.pdf')
       tmp.send.should == true
       tmp.request_id.should == 19
       tmp.group_id.should == 29
