@@ -4,8 +4,8 @@ describe Fax::Faxstat do
 
   before do
     Fax.configuration = nil
-    ENV['SENDFAX_PATH'] = '/path/to/somewhere'
-    ENV['FAXSTAT_PATH'] = '/another/path'
+    ENV['FAX_SENDFAX_PATH'] = '/path/to/somewhere'
+    ENV['FAX_FAXSTAT_PATH'] = '/another/path'
   end
 
   describe 'hylafax running' do

@@ -4,10 +4,10 @@ describe Fax::Sendfax do
 
   before do
     Fax.configuration = nil
-    ENV['SENDFAX_PATH'] = '/path/to/somewhere'
-    ENV['SENDFAX_HOST'] = '0.0.0.0'
-    ENV['FAXSTAT_PATH'] = '/another/path'
-    ENV['FAXRM_PATH']   = '/final/path'
+    ENV['FAX_SENDFAX_PATH'] = '/path/to/somewhere'
+    ENV['FAX_SENDFAX_HOST'] = '0.0.0.0'
+    ENV['FAX_FAXSTAT_PATH'] = '/another/path'
+    ENV['FAX_FAXRM_PATH']   = '/final/path'
   end
 
   describe 'sending a fax' do

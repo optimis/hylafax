@@ -4,9 +4,9 @@ describe Fax::Faxrm do
 
   before do
     Fax.configuration = nil
-    ENV['SENDFAX_PATH'] = '/path/to/somewhere'
-    ENV['FAXSTAT_PATH'] = '/another/path'
-    ENV['FAXRM_PATH']   = '/final/path'
+    ENV['FAX_SENDFAX_PATH'] = '/path/to/somewhere'
+    ENV['FAX_FAXSTAT_PATH'] = '/another/path'
+    ENV['FAX_FAXRM_PATH']   = '/final/path'
   end
 
   describe 'removing faxes' do

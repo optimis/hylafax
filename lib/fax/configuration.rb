@@ -11,11 +11,11 @@ module Fax
         faxrm_path            = args[0]['faxrm_path']
         faxrm_admin_password  = args[0]['faxrm_admin_password']
       end
-      @sendfax_path           = sendfax_path          || ENV['SENDFAX_PATH']
-      @sendfax_host           = sendfax_host          || ENV['SENDFAX_HOST']
-      @faxstat_path           = faxstat_path          || ENV['FAXSTAT_PATH']
-      @faxrm_path             = faxrm_path            || ENV['FAXRM_PATH']
-      @faxrm_admin_password   = faxrm_admin_password  || ENV['FAXRM_ADMIN_PASSWORD']
+      @sendfax_path           = sendfax_path          || ENV['FAX_SENDFAX_PATH']
+      @sendfax_host           = sendfax_host          || ENV['FAX_SENDFAX_HOST']
+      @faxstat_path           = faxstat_path          || ENV['FAX_FAXSTAT_PATH']
+      @faxrm_path             = faxrm_path            || ENV['FAX_FAXRM_PATH']
+      @faxrm_admin_password   = faxrm_admin_password  || ENV['FAX_FAXRM_ADMIN_PASSWORD']
     end
   end
 

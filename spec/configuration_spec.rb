@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Fax::Configuration do
   describe 'when no sendfax_path is specified' do
     before do
-      ENV['SENDFAX_PATH'] = '/path/to/no/where'
+      ENV['FAX_SENDFAX_PATH'] = '/path/to/no/where'
       Fax.configuration = nil
       Fax.configure do |config|
       end
     end
 
-    it 'defaults to ENV["SENDFAX_PATH"]' do
+    it 'defaults to ENV["FAX_SENDFAX_PATH"]' do
       Fax.configuration.sendfax_path.should == '/path/to/no/where'
     end
   end
