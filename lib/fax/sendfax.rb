@@ -15,7 +15,6 @@ module Fax
       # end
 
       # @subject    = options[:subject]
-      raise Fax::ParamError if options.empty?
       @document   = options[:document]
       @fax_number = options[:fax_number]
       @from       = options[:from]
@@ -32,6 +31,7 @@ module Fax
 
     private
     def sendfax
+      raise Fax::ParamError if @from.empty? || @to.empty? || @fax_number.empty? || @document.empty?
       `#{Fax.configuration.sendfax_path} -f "#{@from}" -d "#{@to}@#{@fax_number}" -h #{Fax.configuration.sendfax_host} #{@document}`
     end
 
