@@ -2,7 +2,7 @@ module Fax
   class Sendfax
 
     # man sendfax
-    attr_accessor :response, :subject, :from, :to, :fax_number, :document, :request_id, :group_id, :files
+    attr_accessor :call, :response, :subject, :from, :to, :fax_number, :document, :request_id, :group_id, :files
 
     def initialize(options={})
       configure_from_env
@@ -32,7 +32,8 @@ module Fax
     private
     def sendfax
       raise Fax::ParamError if @from.empty? || @to.empty? || @fax_number.empty? || @document.empty?
-      `#{Fax.configuration.sendfax_path} -f "#{@from}" -d "#{@to}@#{@fax_number}" -h #{Fax.configuration.sendfax_host} #{@document}`
+      @call = "#{Fax.configuration.sendfax_path} -f \"#{@from}\" -d \"#{@to}@#{@fax_number}\" -h #{Fax.configuration.sendfax_host} #{@document}"
+      `#{@call}`
     end
 
     def parse_response

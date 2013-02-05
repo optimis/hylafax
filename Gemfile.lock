@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fax (0.0.5)
+    fax (0.0.7)
 
 GEM
   remote: http://rubygems.org/
