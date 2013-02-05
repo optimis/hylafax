@@ -45,8 +45,11 @@ module Fax
     end
 
     def configure_from_env
-      Fax.configure do |config|
+      if defined?(Rails) && File.exists?(file=Rails.root.join('config/fax.yml'))
+        yaml_config = YAML.load_file file
+        Fax.configuration = Fax::configuration.new yaml_config[Rails.env]
       end
+      Fax.configuration ||= Fax::Configuration.new
     end
 
   end

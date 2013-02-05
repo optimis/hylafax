@@ -1,6 +1,6 @@
 module Fax
   class Configuration
-    attr_accessor :sendfax_path,  :faxstat_path, :faxrm_path, :faxrm_admin_password,
+    attr_accessor :sendfax_path, :sendfax_host, :faxstat_path, :faxrm_path, :faxrm_admin_password
 
     def initialize(*args)
       if args[0].is_a?(Hash)

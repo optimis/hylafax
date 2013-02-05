@@ -1,4 +1,5 @@
 require "fax/version"
+require "fax/errors"
 require "fax/configuration"
 require "fax/sendfax"
 require "fax/faxstat"
