@@ -1,5 +1,5 @@
 require 'rspec/autorun'
-require 'fax'
+require 'hylafax'
 require 'pry'
 
 RSpec.configure do |config|

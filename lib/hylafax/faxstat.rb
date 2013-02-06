@@ -1,4 +1,4 @@
-module Fax
+module Hylafax
   class Faxstat
 
     attr_accessor :response, :jobs, :running, :modem
@@ -7,7 +7,7 @@ module Fax
       configure_from_env
       @jobs = {}
       @modem = {running: false, ready: false, free: false, sending: false, response: nil, name: nil, number: nil}
-      raise Fax::ConfigError if Fax.configuration.faxstat_path.nil?
+      raise Hylafax::ConfigError if Hylafax.configuration.faxstat_path.nil?
     end
 
     def running?
@@ -37,7 +37,7 @@ module Fax
     end
 
     def faxstat
-      `#{Fax.configuration.faxstat_path} -sdl`
+      `#{Hylafax.configuration.faxstat_path} -sdl`
     end
 
     def parse_response
@@ -89,9 +89,9 @@ module Fax
     def configure_from_env
       if defined?(Rails) && File.exists?(file=Rails.root.join('config/fax.yml'))
         yaml_config = YAML.load_file file
-        Fax.configuration = Fax::configuration.new yaml_config[Rails.env]
+        Hylafax.configuration = Hylafax::configuration.new yaml_config[Rails.env]
       end
-      Fax.configuration ||= Fax::Configuration.new
+      Hylafax.configuration ||= Hylafax::Configuration.new
     end
 
   end

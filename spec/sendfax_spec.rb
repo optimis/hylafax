@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Fax::Sendfax do
+describe Hylafax::Sendfax do
 
   before do
-    Fax.configuration = nil
+    Hylafax.configuration = nil
     ENV['FAX_SENDFAX_PATH'] = '/path/to/somewhere'
     ENV['FAX_SENDFAX_HOST'] = '0.0.0.0'
     ENV['FAX_FAXSTAT_PATH'] = '/another/path'
@@ -15,9 +15,9 @@ describe Fax::Sendfax do
     it 'successfully sends a fax' do
 
       fake_sendfax_response = "request id is 19 (group id 29) for host 0.0.0.0 (1 file)\n"
-      Fax::Sendfax.any_instance.stub(:sendfax).and_return(fake_sendfax_response)      
+      Hylafax::Sendfax.any_instance.stub(:sendfax).and_return(fake_sendfax_response)      
 
-      tmp = Fax::Sendfax.new(document: '/tmp/cool.pdf')
+      tmp = Hylafax::Sendfax.new(document: '/tmp/cool.pdf')
       tmp.send.should == true
       tmp.request_id.should == 19
       tmp.group_id.should == 29

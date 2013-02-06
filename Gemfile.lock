@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fax (0.0.7)
+    hylafax (0.0.7)
 
 GEM
   remote: http://rubygems.org/
@@ -27,6 +27,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  fax!
+  hylafax!
   pry
   rspec (~> 2.12.0)

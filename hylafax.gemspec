@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'fax/version'
+require 'hylafax/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "fax"
-  gem.version       = Fax::VERSION
+  gem.name          = "hylafax"
+  gem.version       = Hylafax::VERSION
   gem.authors       = ["James Thullbery"]
   gem.email         = ["jthullbery@teladoc.com"]
   gem.description   = %q{Ruby wrapper for Hylafax Server}

@@ -1,4 +1,4 @@
-module Fax
+module Hylafax
   class Faxrm
     require 'expect'
     require 'pty'
@@ -7,7 +7,7 @@ module Fax
     def initialize(job_id=nil)
       result = nil
       configure_from_env
-      raise Fax::ConfigError if Fax.configuration.faxstat_path.nil?
+      raise Hylafax::ConfigError if Hylafax.configuration.faxstat_path.nil?
     end
 
     def rm(job_id)
@@ -28,7 +28,7 @@ module Fax
         $expect_verbose = true
 
         r_f.expect(/^Password:/) do |output|
-          w_f.print "#{Fax.configuration.faxrm_admin_password}\n"
+          w_f.print "#{Hylafax.configuration.faxrm_admin_password}\n"
         end
 
         if r_f.expect(/Job ([\d]+) removed./)
@@ -41,15 +41,15 @@ module Fax
     private
 
     def faxrm(job_id)
-      `#{Fax.configuration.faxrm_path} #{job_id}`
+      `#{Hylafax.configuration.faxrm_path} #{job_id}`
     end
 
     def configure_from_env
       if defined?(Rails) && File.exists?(file=Rails.root.join('config/fax.yml'))
         yaml_config = YAML.load_file file
-        Fax.configuration = Fax::configuration.new yaml_config[Rails.env]
+        Hylafax.configuration = Hylafax::configuration.new yaml_config[Rails.env]
       end
-      Fax.configuration ||= Fax::Configuration.new
+      Hylafax.configuration ||= Hylafax::Configuration.new
     end
 
   end

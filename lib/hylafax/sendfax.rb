@@ -1,4 +1,4 @@
-module Fax
+module Hylafax
   class Sendfax
 
     # man sendfax
@@ -6,7 +6,7 @@ module Fax
 
     def initialize(options={})
       configure_from_env
-      raise Fax::ConfigError if Fax.configuration.sendfax_path.nil?
+      raise Hylafax::ConfigError if Hylafax.configuration.sendfax_path.nil?
       # unless options.empty?
       #   options[:document]    = '/tmp/cool.pdf'
       #   options[:fax_number]  = 'james@2037691544'
@@ -31,8 +31,8 @@ module Fax
 
     private
     def sendfax
-      raise Fax::ParamError if @from.empty? || @to.empty? || @fax_number.empty? || @document.empty?
-      @call = "#{Fax.configuration.sendfax_path} -f \"#{@from}\" -d \"#{@to}@#{@fax_number}\" -h #{Fax.configuration.sendfax_host} #{@document}"
+      raise Hylafax::ParamError if @from.empty? || @to.empty? || @fax_number.empty? || @document.empty?
+      @call = "#{HylafaxHylafax.configuration.sendfax_path} -f \"#{@from}\" -d \"#{@to}@#{@fax_number}\" -h #{Hylafax.configuration.sendfax_host} #{@document}"
       `#{@call}`
     end
 
@@ -46,9 +46,9 @@ module Fax
     def configure_from_env
       if defined?(Rails) && File.exists?(file=Rails.root.join('config/fax.yml'))
         yaml_config = YAML.load_file file
-        Fax.configuration = Fax::configuration.new yaml_config[Rails.env]
+        Hylafax.configuration = Hylafax::configuration.new yaml_config[Rails.env]
       end
-      Fax.configuration ||= Fax::Configuration.new
+      Hylafax.configuration ||= Hylafax::Configuration.new
     end    
 
   end

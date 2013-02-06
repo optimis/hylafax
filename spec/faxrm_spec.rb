@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Fax::Faxrm do
+describe Hylafax::Faxrm do
 
   before do
-    Fax.configuration = nil
+    Hylafax.configuration = nil
     ENV['FAX_SENDFAX_PATH'] = '/path/to/somewhere'
     ENV['FAX_FAXSTAT_PATH'] = '/another/path'
     ENV['FAX_FAXRM_PATH']   = '/final/path'
@@ -13,24 +13,24 @@ describe Fax::Faxrm do
     it 'removes a fax created by same user' do
       fake_faxrm_response = "Job 8 removed.\n"
       
-      Fax::Faxrm.any_instance.stub(:faxrm).and_return(fake_faxrm_response)
+      Hylafax::Faxrm.any_instance.stub(:faxrm).and_return(fake_faxrm_response)
 
-      Fax::faxrm.rm(8).should == true
+      Hylafax::faxrm.rm(8).should == true
     end
 
     it 'doesnt remove a fax created by a differnt user' do
       fake_faxrm_response = "504 Cannot kill job: Operation not permitted."
 
-      Fax::Faxrm.any_instance.stub(:faxrm).and_return(fake_faxrm_response)
+      Hylafax::Faxrm.any_instance.stub(:faxrm).and_return(fake_faxrm_response)
 
-      Fax::faxrm.rm(8).should == false
+      Hylafax::faxrm.rm(8).should == false
     end
 
     it 'force removes a fax created by a different user' do
       fake_faxrm_response = true
-      Fax::Faxrm.any_instance.stub(:force_rm).and_return(fake_faxrm_response)
+      Hylafax::Faxrm.any_instance.stub(:force_rm).and_return(fake_faxrm_response)
 
-      Fax::faxrm.force_rm(8).should == true
+      Hylafax::faxrm.force_rm(8).should == true
     end
     
   end

@@ -1,4 +1,4 @@
-module Fax
+module Hylafax
   class Configuration
     attr_accessor :sendfax_path, :sendfax_host, :faxstat_path, :faxrm_path, :faxrm_admin_password
 
