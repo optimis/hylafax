@@ -32,7 +32,7 @@ module Hylafax
     private
     def sendfax
       raise Hylafax::ParamError if @from.empty? || @to.empty? || @fax_number.empty? || @document.empty?
-      @call = "#{HylafaxHylafax.configuration.sendfax_path} -f \"#{@from}\" -d \"#{@to}@#{@fax_number}\" -h #{Hylafax.configuration.sendfax_host} #{@document}"
+      @call = "#{Hylafax.configuration.sendfax_path} -f \"#{@from}\" -d \"#{@to}@#{@fax_number}\" -h #{Hylafax.configuration.sendfax_host} #{@document}"
       `#{@call}`
     end
 
@@ -46,7 +46,7 @@ module Hylafax
     def configure_from_env
       if defined?(Rails) && File.exists?(file=Rails.root.join('config/fax.yml'))
         yaml_config = YAML.load_file file
-        Hylafax.configuration = Hylafax::configuration.new yaml_config[Rails.env]
+        Hylafax.configuration = Hylafax::Configuration.new yaml_config[Rails.env]
       end
       Hylafax.configuration ||= Hylafax::Configuration.new
     end    
