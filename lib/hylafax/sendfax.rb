@@ -22,7 +22,7 @@ module Hylafax
       
     end
 
-    def send
+    def transmit
       @response = sendfax
       parse_response
       return true
