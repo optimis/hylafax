@@ -1,6 +1,6 @@
 module Hylafax
   class Configuration
-    attr_accessor :sendfax_path, :sendfax_host, :faxstat_path, :faxrm_path, :faxrm_admin_password, :speed
+    attr_accessor :sendfax_path, :sendfax_host, :faxstat_path, :faxrm_path, :faxrm_admin_password, :speed, :cover_sheet
 
     def initialize(*args)
       if args[0].is_a?(Hash)
@@ -11,6 +11,7 @@ module Hylafax
         faxrm_path            = args[0]['faxrm_path']
         faxrm_admin_password  = args[0]['faxrm_admin_password']
         speed                 = args[0]['speed']
+        cover_sheet           = args[0]['cover_sheet']
       end
 
       @sendfax_path           = sendfax_path          || ENV['FAX_SENDFAX_PATH']
@@ -19,6 +20,7 @@ module Hylafax
       @faxrm_path             = faxrm_path            || ENV['FAX_FAXRM_PATH']
       @faxrm_admin_password   = faxrm_admin_password  || ENV['FAX_FAXRM_ADMIN_PASSWORD']
       @speed                  = speed                 || ENV['SPEED']
+      @cover_sheet            = cover_sheet
     end
   end
 
