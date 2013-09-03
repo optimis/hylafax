@@ -31,5 +31,10 @@ describe Hylafax::Configuration do
       Hylafax.configuration = Hylafax::Configuration.new({'sendfax_path' => '/path/to/any/where' })
       Hylafax.configuration.sendfax_path.should == '/path/to/any/where'
     end
+
+    it 'should set the signalling rate' do
+      Hylafax.configuration = Hylafax::Configuration.new({ 'sendfax_path' => '/path/to/any/where', 'speed' => 9600 })
+      Hylafax.configuration.speed.should == 9600
+    end
   end
 end
