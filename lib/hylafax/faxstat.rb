@@ -72,7 +72,7 @@ module Hylafax
         unless tmp_jobs.empty?
           key = tmp_jobs[0].split(delimiter)
           tmp_jobs[(1..-1)].each do |job|
-            value = job.split(" ")
+            value = job.split(delimiter)
             @jobs[value[0].to_i] = Hash[key.zip value]
           end
         end
