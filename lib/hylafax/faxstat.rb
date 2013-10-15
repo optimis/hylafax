@@ -40,6 +40,10 @@ module Hylafax
       `#{Hylafax.configuration.faxstat_path} -sdl`
     end
 
+    def delimiter
+      Hylafax.configuration.faxstat_delimiter || ' '
+    end
+
     def parse_response
       # Clean string
       tmp = @response.gsub(/[\r]/, '').split("\n").reject{|x| x.empty?}
@@ -66,7 +70,7 @@ module Hylafax
         
         tmp_jobs = tmp.each{|job| job.split("\n")}.delete_if{|str| str.empty? || str.eql?("\n")}
         unless tmp_jobs.empty?
-          key = tmp_jobs[0].split(" ")
+          key = tmp_jobs[0].split(delimiter)
           tmp_jobs[(1..-1)].each do |job|
             value = job.split(" ")
             @jobs[value[0].to_i] = Hash[key.zip value]
